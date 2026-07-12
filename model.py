@@ -31,8 +31,21 @@ print("Root Key:", root_key)
 print("Data Key:", data_key)
 print("Init Key:", init_key)
 
-# Step 2 - split_prng_key (not yet solved)
-# TODO: implement
+# Step 2 - split_prng_key
+import jax
+
+def split_prng_key(key, num):
+    return jax.random.split(key, num)
+
+def make_prng_key(seed):
+    return jax.random.PRNGKey(seed)
+
+key = make_prng_key(0)
+
+subkeys = split_prng_key(key, 2)
+
+print(subkeys.shape)
+print(subkeys.dtype)
 
 # Step 3 - sample_normal_matrix (not yet solved)
 # TODO: implement
