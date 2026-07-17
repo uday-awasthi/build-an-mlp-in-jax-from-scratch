@@ -90,8 +90,26 @@ def init_linear_layer(key, in_dim, out_dim, scale=0.1):
         "b": b
     }
 
-# Step 8 - init_mlp_params (not yet solved)
-# TODO: implement
+# Step 8 - init_mlp_params
+import jax
+
+def init_mlp_params(key, layer_sizes, scale=0.1):
+    num_layers = len(layer_sizes) - 1
+    keys = jax.random.split(key, num_layers)
+
+    params = []
+
+    for i in range(num_layers):
+        params.append(
+            init_linear_layer(
+                keys[i],
+                layer_sizes[i],
+                layer_sizes[i + 1],
+                scale
+            )
+        )
+
+    return params
 
 # Step 9 - linear_forward (not yet solved)
 # TODO: implement
