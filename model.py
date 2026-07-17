@@ -78,8 +78,17 @@ import jax.numpy as jnp
 def one_hot_encode_labels(labels, num_classes):
     return jax.nn.one_hot(labels, num_classes)
 
-# Step 7 - init_linear_layer (not yet solved)
-# TODO: implement
+# Step 7 - init_linear_layer
+import jax
+import jax.numpy as jnp
+
+def init_linear_layer(key, in_dim, out_dim, scale=0.1):
+    W = jax.random.normal(key, (in_dim, out_dim)) * scale
+    b = jnp.zeros((out_dim,))
+    return {
+        "W": W,
+        "b": b
+    }
 
 # Step 8 - init_mlp_params (not yet solved)
 # TODO: implement
