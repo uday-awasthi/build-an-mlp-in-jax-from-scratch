@@ -251,6 +251,13 @@ def train_mlp(params, x, one_hot_targets, learning_rate, num_epochs):
     # Return the final trained parameters
     return params
 
-# Step 21 - predict_classes (not yet solved)
-# TODO: implement
+# Step 21 - predict_classes
+import jax.numpy as jnp
+
+def predict_classes(params, x):
+    # Run the input through the MLP to get logits
+    logits = mlp_forward(params, x)
+
+    # Return the predicted class index for each example
+    return jnp.argmax(logits, axis=-1).astype(jnp.int32)
 
