@@ -179,8 +179,16 @@ def classification_accuracy(logits, labels):
     # Compare predictions with true labels and compute the mean accuracy
     return jnp.mean(predictions == labels)
 
-# Step 16 - loss_fn_of_params (not yet solved)
-# TODO: implement
+# Step 16 - loss_fn_of_params
+import jax
+import jax.numpy as jnp
+
+def loss_fn_of_params(params, x, one_hot_targets):
+    # Forward pass through the MLP to get logits
+    logits = mlp_forward(params, x)
+
+    # Compute and return the scalar cross-entropy loss
+    return cross_entropy_loss(logits, one_hot_targets)
 
 # Step 17 - compute_param_grads (not yet solved)
 # TODO: implement
