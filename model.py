@@ -156,8 +156,16 @@ def log_softmax_logits(logits):
     # Return log-softmax values
     return shifted - log_sum_exp
 
-# Step 14 - cross_entropy_loss (not yet solved)
-# TODO: implement
+# Step 14 - cross_entropy_loss
+def cross_entropy_loss(logits, one_hot_targets):
+    # Compute log probabilities using the numerically stable log-softmax
+    log_probs = log_softmax_logits(logits)
+
+    # Compute cross-entropy loss for each sample
+    loss = -jnp.sum(one_hot_targets * log_probs, axis=-1)
+
+    # Return the mean loss over the batch
+    return jnp.mean(loss)
 
 # Step 15 - classification_accuracy (not yet solved)
 # TODO: implement
