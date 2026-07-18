@@ -200,8 +200,23 @@ def compute_param_grads(params, x, one_hot_targets):
 
     return grads
 
-# Step 18 - sgd_update_params (not yet solved)
-# TODO: implement
+# Step 18 - sgd_update_params
+import jax
+import jax.numpy as jnp
+
+def sgd_update_params(params, grads, learning_rate):
+    # Create a new list to store the updated parameters
+    updated_params = []
+
+    # Update each layer's weights and biases
+    for param, grad in zip(params, grads):
+        updated_layer = {
+            "W": param["W"] - learning_rate * grad["W"],
+            "b": param["b"] - learning_rate * grad["b"],
+        }
+        updated_params.append(updated_layer)
+
+    return updated_params
 
 # Step 19 - training_step (not yet solved)
 # TODO: implement
