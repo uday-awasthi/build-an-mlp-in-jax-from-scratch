@@ -218,8 +218,22 @@ def sgd_update_params(params, grads, learning_rate):
 
     return updated_params
 
-# Step 19 - training_step (not yet solved)
-# TODO: implement
+# Step 19 - training_step
+import jax
+import jax.numpy as jnp
+
+def training_step(params, x, one_hot_targets, learning_rate):
+    # Compute the current loss using the existing parameters
+    loss = loss_fn_of_params(params, x, one_hot_targets)
+
+    # Compute gradients of the loss with respect to the parameters
+    grads = compute_param_grads(params, x, one_hot_targets)
+
+    # Update the parameters using one SGD step
+    new_params = sgd_update_params(params, grads, learning_rate)
+
+    # Return the updated parameters and the loss before the update
+    return new_params, loss
 
 # Step 20 - train_mlp (not yet solved)
 # TODO: implement
